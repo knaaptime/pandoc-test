@@ -2,6 +2,31 @@
 
 test repo for debugging pandoc breakage
 
+prior to version 2.8, this build chain would successfully build the paper but now it errors when creating a pdf.
+
+to reproduce:
+```
+git clone git@github.com:knaaptime/pandoc-test.git
+cd pandoc-test
+make environment   # will install deps and pandoc 2.9.1.1
+conda activate pandoc-test
+make clean
+make paper
+```
+which will fail. 
+
+but downgrading to 2.7.3 will fix the issue
+
+```
+conda install  pandoc==2.7.3
+make clean; make paper
+```
+
+the paper will build into `paper/draft.pdf`
+
+
+------
+
 Project for doing code-centric academic writing based on
 [hfgrif’s fork](https://github.com/hgrif/cookiecutter-ds-python) of the
 [cookiecutter data science project template](https://drivendata.github.io/cookiecutter-data-science/)
